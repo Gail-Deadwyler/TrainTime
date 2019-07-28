@@ -49,10 +49,7 @@ $("#add-train-btn").on("click", function(event) {
   console.log(newTrain.name);
   console.log(newTrain.destination);
   console.log(newTrain.firstTrain);
-  console.log(newTrain.frequency);
-
-  // Alert
-  alert("Train successfully added");
+  console.log(newTrain.frequency); 
 
   // Clears all of the text-boxes
   $("#train-name-input").val("");
