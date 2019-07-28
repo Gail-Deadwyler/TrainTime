@@ -15,6 +15,49 @@ var config = {
     storageBucket: "train-times-93583.appspot.com"
   };
   
-  firebase.initializeApp(config);
+firebase.initializeApp(config); 
+
+var trainData = firebase.database();
+
+// 2. Populate Firebase Database with initial data (in this case, I did this via Firebase GUI)
+// 3. Button for adding trains
+$("#add-train-btn").on("click", function(event) {
+    // Prevent the default form submit behavior
+  event.preventDefault();
+
+  // Grabs user input
+  var trainName = $("#train-name-input").val().trim();
+
+  var destination = $("#destination-input").val().trim();
+
+  var firstTrain = $("#first-train-input").val().trim();
+
+  var frequency = $("#frequency-input").val().trim();
+
+  // Creates local "temporary" object for holding train data
+  var newTrain = {
+    name: trainName,
+    destination: destination,
+    firstTrain: firstTrain,
+    frequency: frequency
+  };
+
+  // Uploads train data to the database
+  trainData.ref().push(newTrain);
+
+  // Logs everything to console
+  console.log(newTrain.name);
+  console.log(newTrain.destination);
+  console.log(newTrain.firstTrain);
+  console.log(newTrain.frequency);
+
+  // Alert
+  alert("Train successfully added");
+
+  // Clears all of the text-boxes
+  $("#train-name-input").val("");
+  $("#destination-input").val("");
+  $("#first-train-input").val("");
+  $("#frequency-input").val("");
+});
   
-  var trainData = firebase.database();
